@@ -2,5 +2,46 @@ Autores:
   - Víctor Nieves Sánchez, x150375
   - Daniel Morgera Pérez, x150284
   - Alejandro Carmona Ayllón, x150151
-  
- 
+
+% --------------------- Auxiliares ----------------------  
+lowerEq/2 Indica si el primer argumento es menor o igual que el segundo.
+
+compPiezas/2 Compara si la pieza1 es menor que la pieza2 en anchura y profundidad.
+
+tamanio/2 Compara la lista (primer argumento) tiene el tamaño del segundo argumento.
+
+concatenar/3 Dice si la lista de tercer argumento es la concatenación del primer y el segundo argumento.
+
+**Nota**: Estas no se han probado, ya que se probaban indirectamente en los principales.
+
+% --------------------- Principales ----------------------
+esTorre/1 predicado que se verifica si se cumplen las condiciones para ser una torre.
+	Pruebas:
+		1- esTorre([pieza(s(0),s(0),s(0),a)]).
+			yes
+		2- esTorre(pieza(s(0),s(0),s(0),a)).
+			no
+		3- esTorre([pieza(s(0),s(0),s(0),a),pieza(s(0),s(0),s(0),r)]).
+			yes
+
+alturaTorre/2 predicado que verifica si el primer argumento es una torre, y el segundo argumento es la altura de la torre.
+	Pruebas:
+		1- alturaTorre([pieza(s(0),s(0),s(0),a)],s(0)).
+			yes
+		2- alturaTorre(pieza(s(0),s(0),s(0),a),s(0)).
+			no
+		3- alturaTorre([pieza(s(0),s(0),s(0),a),pieza(s(0),s(0),s(0),r)],s(s(0))).
+			yes
+
+coloresTorre/2 verifica si el primer argumento es una torre y el segundo argumento es una lista con los colores de la torre.
+**Nota**: Este predicado llama a coloresTorre_. Se hace así para comprobar una sola vez que el primer argumento es una torre, y no hacerlo todas las llamadas.
+	Pruebas:
+		1- coloresTorre([pieza(s(s(0)),s(0),s(s(0)),r),pieza(s(s(0)),s(s(0)),s(s(0)),r),pieza(s(s(0)),s(s(0)),s(s(0)),r)],[r,r,r]).
+			yes
+		2- coloresTorre([pieza(s(s(0)),s(0),s(s(0)),r),pieza(s(s(0)),s(s(0)),s(s(0)),r),pieza(s(s(0)),s(s(0)),s(s(0)),r)],[a]).
+			no
+		3- coloresTorre([pieza(s(s(0)),s(0),s(s(0)),r),pieza(s(s(0)),s(s(0)),s(s(0)),r),pieza(s(s(0)),s(s(0)),s(s(0)),r)],[a,a,a]).
+			no
+
+coloresTorre_/2 es el que realiza la lista de colroes.
+	No se ha probado, ya que se probaba con la llamada a coloresTorre/2.

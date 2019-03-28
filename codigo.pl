@@ -22,6 +22,11 @@ tamanio([],0).
 tamanio([_|Xs],s(N)) :-
 	tamanio(Xs,N).
 
+% concatenar/3 Dice si la lista de tercer argumento es la concatenación del primer y el segundo argumento
+concatenar([],X,X).
+concatenar([X|L1],L2,[X|L3]):-
+        concatenar(L1,L2,L3).
+
 % --------------------- Principales ----------------------
 % esTorre/1 predicado que se verifica si se cumplen las condiciones para ser una torre.
 esTorre([pieza(_,_,_,_)]).
@@ -34,3 +39,16 @@ alturaTorre([],0).
 alturaTorre(Piezas,Tamanio):-
 	esTorre(Piezas),
 	tamanio(Piezas,Tamanio).
+
+% coloresTorre/2 verifica si el primer argumento es una torre y el segundo argumento es una lista con los colores de la torre.
+coloresTorre(T,C) :-
+	esTorre(T),
+	coloresTorre_(T,C).
+
+% coloresTorre_/2 escribe la lista de colores
+coloresTorre_([],[]).
+coloresTorre_([pieza(_,_,_,C)|Piezas],[C|RestoColores]):-
+	coloresTorre_(Piezas,RestoColores).
+
+
+

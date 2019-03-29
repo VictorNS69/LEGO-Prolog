@@ -4,11 +4,11 @@ Autores:
   - Alejandro Carmona Ayllón, x150151
 
 % --------------------- Auxiliares ----------------------  
-lowerEq/2 Indica si el primer argumento es menor o igual que el segundo.
+menorIgual/2 Indica si el primer argumento es menor o igual que el segundo.
 
 compPiezas/2 Compara si la pieza1 es menor que la pieza2 en anchura y profundidad.
 
-tamanio/2 Compara la lista (primer argumento) tiene el tamaño del segundo argumento.
+tamanio/2 Compara si la lista (primer argumento) tiene el tamaño del segundo argumento.
 
 concatenar/3 Dice si la lista de tercer argumento es la concatenación del primer y el segundo argumento.
 

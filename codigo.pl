@@ -27,6 +27,11 @@ concatenar([],X,X).
 concatenar([X|L1],L2,[X|L3]):-
         concatenar(L1,L2,L3).
 
+% miembro/2 Indica si el primere elemento (primer argumento) está en la lista del segundo argumento
+miembro(X,[X|_]).
+miembro(X,[Y|Ys]) :-
+	miembro(X,Ys).
+
 % --------------------- Principales ----------------------
 % esTorre/1 predicado que verifica si se cumplen las condiciones para ser una torre.
 esTorre([pieza(_,_,_,_)]).
@@ -50,5 +55,16 @@ coloresTorre_([],[]).
 coloresTorre_([pieza(_,_,_,C)|Piezas],[C|RestoColores]):-
 	coloresTorre_(Piezas,RestoColores).
 
+% cloresIncluidos/2 predicado que verifica si los argumentos son torres y que todos los colores de la lista 1 también están en los de la lista 2.
+coloresIncluidos(T1,T2):-
+	coloresTorre(T1,L1),
+	coloresTorre(T2,L2),
+	coloresIncluidos_(L1,L2).
 
+% coloresIncluidos_/2 compara las listas de colores, e indica si los colores de una estan incluidas en la otra
+coloresIncluidos_([],_).
+coloresIncluidos_([Elemento1|Resto],L2):-
+	miembro(Elemento1,L2),
+	coloresIncluidos_(Resto,L2).
+	
 

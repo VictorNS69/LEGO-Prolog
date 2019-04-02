@@ -45,3 +45,17 @@ coloresTorre/2 verifica si el primer argumento es una torre y el segundo argumen
 
 coloresTorre_/2 es el que realiza la lista de colroes.
 	No se ha probado, ya que se probaba con la llamada a coloresTorre/2.
+
+
+cloresIncluidos/2 predicado que verifica si los argumentos son torres y que todos los colores de la lista 1 también están en los de la lista 2.
+	Pruebas:
+		1- coloresIncluidos([pieza(s(0),s(0),s(0),a)],[pieza(s(0),s(0),s(0),v),pieza(s(0),s(0),s(s(0)),a)]).
+			yes
+
+		2- coloresIncluidos([pieza(s(s(0)),s(s(0)),s(s(0)),a)],[pieza(s(s(0)),s(s(0)),s(s(0)),v)]).
+			no
+		3- coloresIncluidos([pieza(s(s(0)),s(s(s(s(0)))),s(s(s(s(0)))),a),pieza(s(s(0)),s(s(s(s(0)))),s(s(s(s(0)))),r)],[pieza(s(0),s(s(0)),s(s(s(0))),v),pieza(s(s(s(0))),s(s(s(0))),s(s(s(0))),a),pieza(s(s(s(s(0)))),s(s(s(0))),s(s(s(s(s(0))))),r)]).
+			yes
+
+coloresIncluidos_/2 compara las listas de colores, e indica si los colores de una estan incluidas en la otra
+	No se ha probado, ya que se probaba con la llamada a coloresIncluidos/2.

@@ -32,6 +32,22 @@ miembro(X,[X|_]).
 miembro(X,[Y|Ys]) :-
 	miembro(X,Ys).
 
+% esPar(X)/1 --> X is an esPar number
+esPar(0).		% 0 is an esPar number
+esPar(s(s(X))) :-	% n is an esPar number if n-2 is an esPar number
+	esPar(X).	
+
+% suma(X,Y,Z)/3 --> Z = X+Y
+suma(0,X,X).  			% 0+X = X
+suma(s(X),Y,Z) :-			% (1+X)+Y = X+(Y+1)
+	suma(X,s(Y),Z).
+
+% multiplicacion(X,Y,Z)/3 --> Z=X*Y
+multiplicacion(0,X,0) :- nat(X).          % 0*X=0
+multiplicacion(s(X),Y,Z) :-               % (X+1)*Y=(X*Y)+Y
+	multiplicacion(X,Y,A),
+	suma(A,Y,Z).
+
 % --------------------- Principales ----------------------
 % esTorre/1 predicado que verifica si se cumplen las condiciones para ser una torre.
 esTorre([pieza(_,_,_,_)]).
@@ -67,4 +83,6 @@ coloresIncluidos_([Elemento1|Resto],L2):-
 	miembro(Elemento1,L2),
 	coloresIncluidos_(Resto,L2).
 	
+% esEdificioPar/1 predicado que es cierto si el argumento es un edificio que cumple que cada nivel tiene un número par de clavos
+
 

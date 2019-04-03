@@ -1,11 +1,23 @@
 % Autores:
 % alumno_prode(Apellido2,Apellido1,Nombre,NumMatricula)
-alumno_prode('Nieves','Sanchez','Victor','X150375').
-alumno_prode('Carmona','Ayllon','Alejandro','X150251').
-alumno_prode('Morgera','Perez','Daniel','X150284').
+alumno_prode('Sanchez','Nieves','Victor','X150375').
+alumno_prode('Ayllon','Carmona','Alejandro','X150251').
+alumno_prode('Perez','Morgera','Daniel','X150284').
 
 % ---------------------------------------------------------
 % ---------------------- Auxiliares -----------------------
+
+% colorValido/1 Indica si es un color valido [rojo (r), azul (a), verde(v) y amarillo (am)]
+colorV(a).
+colorV(am).
+colorV(r).
+colorV(v).
+
+% nat(X)/1 --> X es un numero natural
+nat(0).
+nat(s(X)) :-
+	nat(X).
+
 % menorIgual/2 Dice si X es menor o igual que Y
 menorIgual(X,X).
 menorIgual(0,X) :- X\=0.
@@ -22,6 +34,9 @@ tamanio([],0).
 tamanio([_|Xs],s(N)) :-
 	tamanio(Xs,N).
 
+% alturaPieza/2 Indica si la pieza (argumento1) tiene la altura del argumento2.
+alturaPieza(pieza(_,A,_,_),A).
+
 % concatenar/3 Indica si la lista de tercer argumento es la concatenación del primer y el segundo argumento.
 concatenar([],X,X).
 concatenar([X|L1],L2,[X|L3]):-
@@ -32,13 +47,13 @@ miembro(X,[X|_]).
 miembro(X,[Y|Ys]) :-
 	miembro(X,Ys).
 
-% esPar(X)/1 --> X is an esPar number
-esPar(0).		% 0 is an esPar number
-esPar(s(s(X))) :-	% n is an esPar number if n-2 is an esPar number
+% esPar(X)/1 --> X es Par 
+esPar(0).		% 0 es Par
+esPar(s(s(X))) :-	% n es Par si n-2 es Par
 	esPar(X).	
 
 % suma(X,Y,Z)/3 --> Z = X+Y
-suma(0,X,X).  			% 0+X = X
+suma(0,X,X).  				% 0+X = X
 suma(s(X),Y,Z) :-			% (1+X)+Y = X+(Y+1)
 	suma(X,s(Y),Z).
 
@@ -49,17 +64,23 @@ multiplicacion(s(X),Y,Z) :-               % (X+1)*Y=(X*Y)+Y
 	suma(A,Y,Z).
 
 % --------------------- Principales ----------------------
+
 % esTorre/1 predicado que verifica si se cumplen las condiciones para ser una torre.
 esTorre([pieza(_,_,_,_)]).
 esTorre([pieza(AN1,AL1,P1,C1),pieza(AN2,AL2,P2,C2)|Piezas]):-
+	colorV(C1),colorV(C2),
+	nat(AL1),nat(AL2),
 	compPiezas(pieza(AN1,AL1,P1,C1),pieza(AN2,AL2,P2,C2)),
 	esTorre([pieza(AN2,AL2,P2,C2)|Piezas]).
 
 % alturaTorre/2 predicado que verifica si el primer argumento es una torre, y el segundo argumento es la altura de la torre.
 alturaTorre([],0).
-alturaTorre(Piezas,Tamanio):-
-	esTorre(Piezas),
-	tamanio(Piezas,Tamanio).
+alturaTorre([pieza(_,_,Alt,_)],Alt).
+alturaTorre([pieza(_,_,Alt,_)|Resto],S):-
+	esTorre([pieza(_,_,Alt,_)|Resto]), %Hacer fuera
+	suma(Saux,Alt,Alt),
+	alturaTorre(Resto,Aaux),
+	suma(Saux,Aaux,S1),
 
 % coloresTorre/2 verifica si el primer argumento es una torre y el segundo argumento es una lista con los colores de la torre.
 coloresTorre(T,C) :-

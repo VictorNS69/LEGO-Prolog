@@ -66,19 +66,26 @@ multiplicacion(s(X),Y,Z) :-               % (X+1)*Y=(X*Y)+Y
  
 % contarClavos/2 Indica si el número de elementos distintos a 'b' de la lista (primer argumento) es el número del segundo argumento
 contarClavos([],0).
+contarClavos([b|Resto],N):-
+	contarClavos(Resto,N).
 contarClavos([E1|Resto],s(Resultado)):-
 	E1\=b,
 	colorV(E1),
 	contarClavos(Resto,Resultado).
 
-contarClavos([E1|Resto],s(Resultado)):-
-	E1=b,
+contarClavos([b|Resto],s(Resultado)):-
 	contarClavos(Resto,s(Resultado)).
 
+% menorQue/2 Dice si X es menor que Y
+menorQue(0,X) :- X\=0.
+menorQue(s(X),s(Y)) :-
+	menorQue(X,Y).
 % --------------------- Principales ----------------------
 
 % esTorre/1 predicado que verifica si se cumplen las condiciones para ser una torre.
-esTorre([pieza(_,_,_,_)]).
+esTorre([pieza(AN1,AL1,P1,C1)]):-
+	nat(AN1),nat(AL1),nat(P1),
+	colorV(C1).
 esTorre([pieza(AN1,AL1,P1,C1),pieza(AN2,AL2,P2,C2)|Piezas]):-
 	colorV(C1),colorV(C2),
 	nat(AL1),nat(AL2),
@@ -120,3 +127,12 @@ esEdificioPar([L1|Resto]):-
 	esPar(R),
 	esEdificioPar(Resto).
 
+% esEdificioPiramide/1 predicado que verifica si Construccion es un edificio que cumple que cada nivel tiene ancho estrictamente mayor que el nivel de arriba.
+esEdificioPiramide([L]):-
+	L\=b,
+	contarClavos(L,_).
+esEdificioPiramide([L1|[L2|Resto]]):-
+	contarClavos(L1,Clavos1),
+	contarClavos(L2,Clavos2),
+	menorQue(Clavos1,Clavos2),
+	esEdificioPiramide([L2|Resto]).

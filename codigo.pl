@@ -7,11 +7,12 @@ alumno_prode('Perez','Morgera','Daniel','X150284').
 % ---------------------------------------------------------
 % ---------------------- Auxiliares -----------------------
 
-% colorValido/1 Indica si es un color valido [rojo (r), azul (a), verde(v) y amarillo (am)]
-colorV(a).
-colorV(am).
-colorV(r).
-colorV(v).
+% colorValido/1 Indica si es un color valido 
+colorV(a). 	% Azul
+colorV(am).	% Amarillo
+colorV(r).	% Rojo
+colorV(v).	% Verde
+colorV(b).	% Vacío/Blanco/Nada
 
 % nat(X)/1 --> X es un numero natural
 nat(0).
@@ -44,7 +45,7 @@ concatenar([X|L1],L2,[X|L3]):-
 
 % miembro/2 Indica si el primere elemento (primer argumento) está en la lista del segundo argumento
 miembro(X,[X|_]).
-miembro(X,[Y|Ys]) :-
+miembro(X,[_|Ys]) :-
 	miembro(X,Ys).
 
 % esPar(X)/1 --> X es Par 
@@ -75,12 +76,19 @@ esTorre([pieza(AN1,AL1,P1,C1),pieza(AN2,AL2,P2,C2)|Piezas]):-
 
 % alturaTorre/2 predicado que verifica si el primer argumento es una torre, y el segundo argumento es la altura de la torre.
 alturaTorre([],0).
-alturaTorre([pieza(_,_,Alt,_)],Alt).
-alturaTorre([pieza(_,_,Alt,_)|Resto],S):-
-	esTorre([pieza(_,_,Alt,_)|Resto]), %Hacer fuera
-	suma(Saux,Alt,Alt),
+alturaTorre([pieza(_,A1,_,_)|Resto],Altura):-
 	alturaTorre(Resto,Aaux),
-	suma(Saux,Aaux,S1),
+	suma(Aaux,A1,Altura).
+
+%alturaTorre(T,A):-
+%	esTorre(T),
+%	alturaTorre_(T,A,0).
+
+% alturaTorre_/3 
+%alturaTorre_([],Alt,Alt).
+%alturaTorre_([pieza(_,X,_,_)|Resto],Alt,S):-
+%	suma(S,X,Z),
+%	alturaTorre_(Resto,Alt,Z).
 
 % coloresTorre/2 verifica si el primer argumento es una torre y el segundo argumento es una lista con los colores de la torre.
 coloresTorre(T,C) :-
@@ -105,5 +113,28 @@ coloresIncluidos_([Elemento1|Resto],L2):-
 	coloresIncluidos_(Resto,L2).
 	
 % esEdificioPar/1 predicado que es cierto si el argumento es un edificio que cumple que cada nivel tiene un número par de clavos
+% ------------------- TODO -----------
+esEdificioPar(CONSTRUCCION) :-
+    esEdificioPar_(CONSTRUCCION).
+
+% RECURSION FILAS
+esEdificioPar_([H|T]) :-
+    % Le pasamos la primera fila (que tambien es una lista)
+    contarClavosPar(H,0),
+
+    % Volvemos a ejecutar esta lista sin el primer elemento
+    esEdificioPar_(T).
+
+% Caso base para la recursion de filas
+esEdificioPar_([]). 
+
+% contarClavosPar/2
+contarClavosPar([],N) :-
+    esPar(N).
+contarClavosPar([b|T],N) :-
+    contarClavosPar(T,N).
+contarClavosPar([_|T],N) :-
+    contarClavosPar(T,s(N)).
+    
 
 

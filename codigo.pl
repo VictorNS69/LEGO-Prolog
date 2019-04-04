@@ -63,6 +63,17 @@ multiplicacion(0,X,0) :- nat(X).          % 0*X=0
 multiplicacion(s(X),Y,Z) :-               % (X+1)*Y=(X*Y)+Y
 	multiplicacion(X,Y,A),
 	suma(A,Y,Z).
+ 
+% contarClavos/2 Indica si el número de elementos distintos a 'b' de la lista (primer argumento) es el número del segundo argumento
+contarClavos([],0).
+contarClavos([E1|Resto],s(Resultado)):-
+	E1\=b,
+	colorV(E1),
+	contarClavos(Resto,Resultado).
+
+contarClavos([E1|Resto],s(Resultado)):-
+	E1=b,
+	contarClavos(Resto,s(Resultado)).
 
 % --------------------- Principales ----------------------
 
@@ -79,16 +90,6 @@ alturaTorre([],0).
 alturaTorre([pieza(_,A1,_,_)|Resto],Altura):-
 	alturaTorre(Resto,Aaux),
 	suma(Aaux,A1,Altura).
-
-%alturaTorre(T,A):-
-%	esTorre(T),
-%	alturaTorre_(T,A,0).
-
-% alturaTorre_/3 
-%alturaTorre_([],Alt,Alt).
-%alturaTorre_([pieza(_,X,_,_)|Resto],Alt,S):-
-%	suma(S,X,Z),
-%	alturaTorre_(Resto,Alt,Z).
 
 % coloresTorre/2 verifica si el primer argumento es una torre y el segundo argumento es una lista con los colores de la torre.
 coloresTorre(T,C) :-
@@ -113,28 +114,9 @@ coloresIncluidos_([Elemento1|Resto],L2):-
 	coloresIncluidos_(Resto,L2).
 	
 % esEdificioPar/1 predicado que es cierto si el argumento es un edificio que cumple que cada nivel tiene un número par de clavos
-% ------------------- TODO -----------
-esEdificioPar(CONSTRUCCION) :-
-    esEdificioPar_(CONSTRUCCION).
-
-% RECURSION FILAS
-esEdificioPar_([H|T]) :-
-    % Le pasamos la primera fila (que tambien es una lista)
-    contarClavosPar(H,0),
-
-    % Volvemos a ejecutar esta lista sin el primer elemento
-    esEdificioPar_(T).
-
-% Caso base para la recursion de filas
-esEdificioPar_([]). 
-
-% contarClavosPar/2
-contarClavosPar([],N) :-
-    esPar(N).
-contarClavosPar([b|T],N) :-
-    contarClavosPar(T,N).
-contarClavosPar([_|T],N) :-
-    contarClavosPar(T,s(N)).
-    
-
+esEdificioPar([]).
+esEdificioPar([L1|Resto]):-
+	contarClavos(L1,R),
+	esPar(R),
+	esEdificioPar(Resto).
 

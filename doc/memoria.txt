@@ -16,6 +16,8 @@ tamanio/2 Compara si la lista (primer argumento) tiene el tamaño del segundo ar
 
 concatenar/3 Dice si la lista de tercer argumento es la concatenación del primer y el segundo argumento.
 
+contarClavos/2 Indica si el número de elementos distintos a 'b' de la lista (primer argumento) es el número del segundo argumento
+
 **Nota**: Estas no se han probado, ya que se probaban indirectamente en los principales.
 
 % --------------------- Principales ----------------------
@@ -63,3 +65,12 @@ cloresIncluidos/2 predicado que verifica si los argumentos son torres y que todo
 
 coloresIncluidos_/2 compara las listas de colores, e indica si los colores de una estan incluidas en la otra
 	No se ha probado, ya que se probaba con la llamada a coloresIncluidos/2.
+
+esEdificioPar/1 predicado que es cierto si el argumento es un edificio que cumple que cada nivel tiene un número par de clavos
+	Pruebas:
+		1- esEdificioPar([[b,a,a,b],[b,a,a,b],[a,a,b,a]]).
+			no
+		2- esEdificioPar([[a,r,v,am],[a,r,v,am],[a,r,v,am]]).
+			yes
+		3- esEdificioPar([[a,d,d,am],[a,r,v,am],[a,r,v,am]]).
+			no

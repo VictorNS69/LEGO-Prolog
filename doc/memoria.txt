@@ -10,9 +10,9 @@ el color uno valido (a, am, b, r, v), se acepta como pieza.
 % --------------------- Auxiliares ----------------------  
 menorIgual/2 Indica si el primer argumento es menor o igual que el segundo.
 
-compPiezas/2 Compara si la pieza1 es menor que la pieza2 en anchura y profundidad.
+menorQue/2 Dice si X es menor que Y
 
-tamanio/2 Compara si la lista (primer argumento) tiene el tamaño del segundo argumento.
+compPiezas/2 Compara si la pieza1 es menor que la pieza2 en anchura y profundidad.
 
 concatenar/3 Dice si la lista de tercer argumento es la concatenación del primer y el segundo argumento.
 

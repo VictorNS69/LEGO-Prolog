@@ -4,8 +4,8 @@ alumno_prode('Sanchez','Nieves','Victor','X150375').
 alumno_prode('Ayllon','Carmona','Alejandro','X150251').
 alumno_prode('Perez','Morgera','Daniel','X150284').
 
-% ---------------------------------------------------------
-% ---------------------- Auxiliares -----------------------
+% ----------------------------------------------------------------------------------------------------------------------
+% ----------------------------------------------------- Auxiliares -----------------------------------------------------
 
 % colorValido/1 Indica si es un color valido 
 colorV(a). 	% Azul
@@ -72,7 +72,6 @@ contarClavos([E1|Resto],s(Resultado)):-
 	E1\=b,
 	colorV(E1),
 	contarClavos(Resto,Resultado).
-
 contarClavos([b|Resto],s(Resultado)):-
 	contarClavos(Resto,s(Resultado)).
 
@@ -80,7 +79,7 @@ contarClavos([b|Resto],s(Resultado)):-
 menorQue(0,X) :- X\=0.
 menorQue(s(X),s(Y)) :-
 	menorQue(X,Y).
-% --------------------- Principales ----------------------
+% ----------------------------------------------------- Principales -----------------------------------------------------
 
 % esTorre/1 predicado que verifica si se cumplen las condiciones para ser una torre.
 esTorre([pieza(AN1,AL1,P1,C1)]):-

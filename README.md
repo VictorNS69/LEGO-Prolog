@@ -26,7 +26,7 @@ Entonces ya podremos empezar a realizar las consultas que queramos.
 Si quieres ver algunas preguntas que se pueden realizar, echa un vistazo a la [memoria](/doc/memoria.txt) de esta práctica.
 
 ## Enunciado
-Podrás encontrar el enunciado de la práctica [aquí](/doc/LEGO-practica.pdf).
+Podrás encontrar el enunciado de la práctica [aquí](/doc/'Lego-practica.pdf').
 
 ## Licencia
 [Licencia](/LICENSE).

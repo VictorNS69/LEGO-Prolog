@@ -48,7 +48,7 @@ coloresTorre/2 verifica si el primer argumento es una torre y el segundo argumen
 			no
 		3- coloresTorre([pieza(s(s(0)),s(0),s(s(0)),r),pieza(s(s(0)),s(s(0)),s(s(0)),r),pieza(s(s(0)),s(s(0)),s(s(0)),r)],[a,a,a]).
 			no
-
+			
 coloresTorre_/2 es el que realiza la lista de colroes.
 	No se ha probado, ya que se probaba con la llamada a coloresTorre/2.
 
@@ -57,7 +57,6 @@ cloresIncluidos/2 predicado que verifica si los argumentos son torres y que todo
 	Pruebas:
 		1- coloresIncluidos([pieza(s(0),s(0),s(0),a)],[pieza(s(0),s(0),s(0),v),pieza(s(0),s(0),s(s(0)),a)]).
 			yes
-
 		2- coloresIncluidos([pieza(s(s(0)),s(s(0)),s(s(0)),a)],[pieza(s(s(0)),s(s(0)),s(s(0)),v)]).
 			no
 		3- coloresIncluidos([pieza(s(s(0)),s(s(s(s(0)))),s(s(s(s(0)))),a),pieza(s(s(0)),s(s(s(s(0)))),s(s(s(s(0)))),r)],[pieza(s(0),s(s(0)),s(s(s(0))),v),pieza(s(s(s(0))),s(s(s(0))),s(s(s(0))),a),pieza(s(s(s(s(0)))),s(s(s(0))),s(s(s(s(s(0))))),r)]).
@@ -77,7 +76,7 @@ esEdificioPar/1 predicado que es cierto si el argumento es un edificio que cumpl
 
 esEdificioPiramide/1 predicado que verifica si Construccion es un edificio que cumple que cada nivel tiene ancho estrictamente mayor que el nivel de arriba.
 	Pruebas:
-		1-  esEdificioPiramide([[b,b,a,a],[a,a,a,a]]).
+		1- esEdificioPiramide([[b,b,a,a],[a,a,a,a]]).
 			yes
 		2- esEdificioPiramide([[b,a,a,a],[b,b,a,a]]).
 			no

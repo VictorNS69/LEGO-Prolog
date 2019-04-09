@@ -80,6 +80,6 @@ esEdificioPiramide/1 predicado que verifica si Construccion es un edificio que c
 			yes
 		2- esEdificioPiramide([[b,a,a,a],[b,b,a,a]]).
 			no
-		3-esEdificioPiramide([[b,b,a,b,b,b,b],[b,a,a,a,b,b,b],[b,a,a,a,a,a,a],[a,a,a,a,a,a,a]]).
+		3- esEdificioPiramide([[b,b,a,b,b,b,b],[b,a,a,a,b,b,b],[b,a,a,a,a,a,a],[a,a,a,a,a,a,a]]).
 			yes
 
